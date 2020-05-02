@@ -1,3 +1,4 @@
+package src;
 /**
  * Class to represet robots (non-player characters)
  */
@@ -65,7 +66,11 @@ public class Robot extends Character {
 		  t.removeRobot(this.getIndex());
 		  return c;
 	  }
-	  return this;
+	  //Colliding with empty cell.
+	  else {
+		  return c;
+		  
+	  }
   }
 
   /**

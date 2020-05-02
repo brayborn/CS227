@@ -1,3 +1,4 @@
+package hw4;
 /**
  * Class to represent smart robots.  Smart robots will not collide with
  * rubble or other robots (however, other robots can collide with smart
@@ -50,28 +51,29 @@ public class SmartRobot extends Robot {
 	  
 	  //determine which way to move, checking if space is occupied
 	  if(playerX > getX()) {
-		  if(t.getCell(getX() + 1, getY()) == null || t.getCell(getX() + 1, getY()).toString() == "@") {
+		  if(t.getCell(getX() + 1, getY()) == null) {
 		  newX = getX() + 1;
 		  }
 	  }else if(playerX < getX()) {
-		  if(t.getCell(getX() - 1, getY()) == null || t.getCell(getX() + 1, getY()).toString() == "@") {
+		  if(t.getCell(getX() - 1, getY()) == null) {
 		  newX = getX() - 1;
 		  }
 	  }else {
 		  newX = getX();
 	  }
 	  if(playerY > getY()) {
-		  if(t.getCell(getX(),  getY() + 1) == null || t.getCell(getX() + 1, getY()).toString() == "@") {
+		  if(t.getCell(getX(),  getY() + 1) == null) {
 		  newY = getY() + 1;
 		  }
 	  }else if(playerY < getY()) {
-		  if(t.getCell(getX(),  getY() - 1) == null || t.getCell(getX() + 1, getY()).toString() == "@") {
+		  if(t.getCell(getX(),  getY() - 1) == null) {
 		  newY = getY() - 1;
 		  }
 	  }else {
 		  newY = getY();
 	  }
-	  setPosition(newX, newY);
+	  
+	  t.moveCharacter(getX(), getY(), newX, newY);
 	  Pair goTo = new Pair(newX, newY);
 	  
 	  return goTo;
