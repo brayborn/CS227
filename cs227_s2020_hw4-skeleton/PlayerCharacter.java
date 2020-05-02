@@ -11,14 +11,13 @@ public class PlayerCharacter extends Character {
 	 */
 	private boolean alive;
 	
-	
   /**
    * TODO: Constructs a new PC at position (x, y) in the tableau
    *
    * @param x The PCs initial x position.
    * @param y The PCs initial y position.
    */
-  public PlayerCharacter(int x, int y)
+  public PlayerCharacter(int x, int y) //FIXME?
   {
 	  super(x,y);
 	  alive = true;
@@ -155,7 +154,7 @@ public class PlayerCharacter extends Character {
    *
    * @param The tableau
    */
-  void doZap(Tableau t)
+  void doZap(Tableau t) //FIXME
   {
   }
 
@@ -171,6 +170,9 @@ public class PlayerCharacter extends Character {
   @Override
   public boolean getZapped()
   {
+	  
+	  alive = false;
+	  return true;
   }
 
   /**

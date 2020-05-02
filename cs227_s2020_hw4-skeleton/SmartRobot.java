@@ -39,5 +39,42 @@ public class SmartRobot extends Robot {
    * @return The new position
    */
   public Pair moveTo(Tableau t) {
+
+	  //new positions to go to
+	  int newX = 0;
+	  int newY = 0;
+	  
+	  //gets the coordinates of the player
+	  int playerX = t.getPC().getX();
+	  int playerY = t.getPC().getY();
+	  
+	  //determine which way to move, checking if space is occupied
+	  if(playerX > getX()) {
+		  if(t.getCell(getX() + 1, getY()) == null) {
+		  newX = getX() + 1;
+		  }
+	  }else if(playerX < getX()) {
+		  if(t.getCell(getX() - 1, getY()) == null) {
+		  newX = getX() - 1;
+		  }
+	  }else {
+		  newX = getX();
+	  }
+	  if(playerY > getY()) {
+		  if(t.getCell(getX(),  getY() + 1) == null) {
+		  newY = getY() + 1;
+		  }
+	  }else if(playerY < getY()) {
+		  if(t.getCell(getX(),  getY() - 1) == null) {
+		  newY = getY() - 1;
+		  }
+	  }else {
+		  newY = getY();
+	  }
+	  
+	  t.moveCharacter(getX(), getY(), newX, newY);
+	  Pair goTo = new Pair(newX, newY);
+	  
+	  return goTo;
   }
 }

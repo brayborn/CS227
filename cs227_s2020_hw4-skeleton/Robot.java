@@ -56,9 +56,20 @@ public class Robot extends Character {
    * @param t The tableau
    * @return The value to be placed in the cell after the collision
    */
-  public Cell collideWith(Cell c, Tableau t)
+  public Cell collideWith(Cell c, Tableau t) //Robot doing the colliding is removed. If it collides with another robot, that robot is removed with getHit.
+  //implemented in Tableau.moveCharacter
   {
-	  
+	  //Colliding with something.
+	  if(c != null) {
+		  c.getHit(t, this);
+		  t.removeRobot(this.getIndex());
+		  return c;
+	  }
+	  //Colliding with empty cell.
+	  else {
+		  return c;
+		  
+	  }
   }
 
   /**
@@ -88,6 +99,8 @@ public class Robot extends Character {
   @Override
   public Cell getHit(Tableau t, Robot by)
   {
+		t.removeRobot(this.getIndex());
+		return new Obstruction(getX(), getY());
   }
 
   /**
@@ -112,6 +125,35 @@ public class Robot extends Character {
    * @param t The tableau
    * @return The new position
    */
-  public Pair moveTo(Tableau t) {
+  public Pair moveTo(Tableau t) { 
+	  
+	  //new positions to go to
+	  int newX;
+	  int newY;
+	  
+	  //gets the coordinates of the player
+	  int playerX = t.getPC().getX();
+	  int playerY = t.getPC().getY();
+	  
+	  //determine which way to move
+	  if(playerX > getX()) {
+		  newX = getX() + 1;
+	  }else if(playerX < getX()) {
+		  newX = getX() - 1;
+	  }else {
+		  newX = getX();
+	  }
+	  if(playerY > getY()) {
+		  newY = getY() + 1;
+	  }else if(playerY < getY()) {
+		  newY = getY() - 1;
+	  }else {
+		  newY = getY();
+	  }
+	  
+	  t.moveCharacter(getX(), getY(), newX, newY);
+	  Pair goTo = new Pair(newX, newY);
+	  
+	  return goTo;
   }
 }
